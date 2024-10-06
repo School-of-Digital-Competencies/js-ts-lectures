@@ -2,29 +2,6 @@
 
 ---
 
-## Source code
-
-> <b style="color: yellow">Source code or just code</b> - a set of instructions telling to the computer which tasks it has to complete
-
-> <b style="color: yellow">Operator</b> - a group of words, number and operations performing a particular task
-
----
-
-```js
-// Source code example
-
-sum = number + 100; // Operator example
-
-/**
- * sum - variable
- * number - variable
- * 100 - literal - a constant value that can be assigned to the variable
- * = + - operations, perforing some actions like assigment, plus, minus, etc
- **/
-```
-
----
-
 ## Demo: Run JavaScript program "Hello World" in Browser
 
 ```js
@@ -289,40 +266,162 @@ The general rules for constructing names for variables (unique identifiers) are:
 
 ## Variable declaration
 
-JavaScript Variables can be declared in 4 ways:
+JavaScript Variables can be declared in 3 ways:
 
-- Automatically
 - Using <b style="color: yellow">`var`</b>
 - Using <b style="color: yellow">`let`</b>
 - Using <b style="color: yellow">`const`</b>
 
 ---
 
-## Variable automatic declaration
+## Variable declaration: <b style="color: yellow">var</b>
 
 ```js
-x = 5;
-y = 6;
-z = x + y;
+var x;
+var y;
+var z;
 ```
 
 ---
 
-## Variable automatic declaration
+## Variable declaration: <b style="color: yellow">let</b>
 
 ```js
-x = 5;
-y = 6;
-z = x + y;
+let x;
+let y;
+let z;
 ```
 
 ---
 
-## Data types
+## Variable declaration: <b style="color: yellow">const</b>
 
-> <b style="color: yellow">Data</b> - 1, 54, 0.00, "My name is JavaScript", true, false
+```js
+const x; // error
+const y; // error
+const z; // error
+```
 
-> <b style="color: yellow">Types</b> - data representative in memory
+---
+
+## Variable declaration and initialization: <b style="color: yellow">var</b>
+
+```js
+var x = 5;
+var y = 6;
+var z = x + y;
+```
+
+---
+
+## Variable declaration and initialization: <b style="color: yellow">let</b>
+
+```js
+let x = 5;
+let y = 6;
+let z = x + y;
+```
+
+---
+
+## Variable declaration and initialization: <b style="color: yellow">const</b>
+
+```js
+const x = 5;
+const y = 6;
+const z = x + y;
+```
+
+---
+
+## Declaration and initialization
+
+```js
+// let x - is a part called declaration
+// = 24 - is a part called initializer
+let x = 24;
+```
+
+In var and let declarations initializer part is options. In const it's required;
+
+```js
+let x;
+var y;
+const z = x + y;
+```
+
+---
+
+## Assigment (linking) Operator =
+
+```js
+let x = 24;
+```
+
+```js
+let x = 5;
+let y = 7;
+const z = x + y;
+```
+
+---
+
+## Why assigment is linking?
+
+<iframe src="https://link.excalidraw.com/readonly/Mm4FE4jbXkn1vY0dL3JM?darkMode=true" width="100%" height="468px" style="border: none;"></iframe>
+
+---
+
+## One Statement, Many Variables
+
+You can declare many variables in one statement.
+
+Start the statement with let and separate the variables by comma:
+
+```js
+let two = 2,
+  model = 6542,
+  price = 200;
+```
+
+---
+
+## Value = undefined
+
+A variable declared without a value will have the value <b style="color: yellow">undefined</b>
+
+```js
+> let price;
+> price;
+< undefined
+```
+
+```js
+> const price = 500;
+> price;
+< 500
+```
+
+---
+
+## Re-Declaring JavaScript Variables
+
+You cannot re-declare a variable declared with let or const
+
+```js
+> let price = 500;
+> let price;
+> price;
+< Uncaught SyntaxError: Identifier 'price' has already been declared
+```
+
+If you re-declare a variable declared with var, it will not lose its value.
+
+````js
+> var price = 250;
+> var price;
+< 500
+``
 
 ---
 
@@ -334,6 +433,4 @@ https://www.youtube.com/watch?v=1F-8pn30bOI
 https://www.youtube.com/watch?v=U5BN_lFE5d8&list=PL3ziSA8uO7KnIt1JQS1FIq6WNoh7UaMhg&index=5
 
 https://www.w3schools.com/js/js_variables.asp
-```
-
----
+````
