@@ -1,4 +1,4 @@
-## Data types, expressions, values, operators
+## Expressions, variables, operators
 
 ---
 
@@ -404,7 +404,7 @@ A variable declared without a value will have the value <b style="color: yellow"
 
 ---
 
-## Re-Declaring JavaScript Variables
+### Re-Declaring JavaScript Variables
 
 You cannot re-declare a variable declared with let or const
 
@@ -421,7 +421,7 @@ If you re-declare a variable declared with var, it will not lose its value.
 > var price = 250;
 > var price;
 < 500
-``
+```
 
 ---
 
