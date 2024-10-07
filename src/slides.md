@@ -327,6 +327,119 @@ JavaScript operators are special symbols that perform operations on one or more 
 
 ---
 
+## JavaScript Types are Dynamic
+
+The same variable can be used to hold different data types
+
+```js
+let x; // undefined
+x = 5; // Number
+x = 'John'; // String
+```
+
+---
+
+## JavaScript Operator typeof
+
+The typeof operator returns the type of a variable or an expression
+
+```js
+typeof ''; // Returns "string"
+typeof 'John'; // Returns "string"
+typeof 'John Doe'; // Returns "string"
+typeof 0; // Returns "number"
+typeof 314; // Returns "number"
+typeof 3.14; // Returns "number"
+typeof 3; // Returns "number"
+typeof (3 + 4); // Returns "number"
+```
+
+---
+
+## JavaScript Type Conversion
+
+Type conversion is the process of converting data of one type to another. For example, converting string data to number.
+
+There are two types of type conversion in JavaScript:
+
+- Implicit Conversion - Automatic type conversion.
+- Explicit Conversion - Manual type conversion.
+
+---
+
+## JavaScript Implicit Conversion
+
+In certain situations, JavaScript automatically converts data of one type to another (to the right type)
+
+```js
+// numeric string used with + gives string type
+let result;
+
+result = '3' + 2; // '32' - String
+
+result = '3' + true; // '3true' - String
+
+result = '3' + null; // '3null' - String
+```
+
+---
+
+## JavaScript Explicit Conversion
+
+You manually convert one type of data into another using [built-in functions](https://www.programiz.com/javascript/library)
+
+```js
+let result;
+
+result = Number('5'); // 5 - Number
+
+result = String(true); // 'true' - String
+
+result = Boolean(0); // false - Boolean
+```
+
+---
+
+## JavaScript Implicit Conversion to Number
+
+When you use arithmetic operators like -, \*, or / with numeric strings, JavaScript automatically changes those strings into numbers
+
+```js
+let result;
+
+result = '4' - '2'; // 2 - Number
+
+result = '4' - 2; // 2 - Number
+
+result = '4' * 2; // 8 - Number
+
+result = '4' / 2; // 2 - Number
+
+result = '4' + 2; // '42' - String
+```
+
+---
+
+<!-- .slide: style="font-size: .5em" -->
+
+## JavaScript Type Conversion Table
+
+| Value     | String Conversion | Number Conversion | Boolean Conversion |
+| --------- | ----------------- | ----------------- | ------------------ |
+| 1         | "1"               | 1                 | true               |
+| 0         | "0"               | 0                 | false              |
+| "1"       | "1"               | 1                 | true               |
+| "0"       | "0"               | 0                 | true               |
+| "ten"     | "ten"             | NaN               | true               |
+| true      | "true"            | 1                 | true               |
+| false     | "false"           | 0                 | false              |
+| null      | "null"            | 0                 | false              |
+| undefined | "undefined"       | NaN               | false              |
+| ''        | ""                | 0                 | false              |
+| ' '       | " "               | 0                 | true               |
+
+---
+
 #### Used Materials
 
 ```md
@@ -339,4 +452,6 @@ https://www.w3schools.com/js/js_datatypes.asp
 https://www.programiz.com/javascript/data-types
 
 https://www.programiz.com/javascript/operators
+
+https://www.programiz.com/javascript/type-conversion
 ```
