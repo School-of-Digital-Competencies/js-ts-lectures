@@ -472,18 +472,437 @@ switch (grade) {
 
 ---
 
+## Loops
+
+---
+
+## JavaScript for loop
+
+the for loop is used for iterating over a block of code a certain number of times
+
+```js
+for (let i = 0; i < 3; i++) {
+  console.log('Hello, world!');
+}
+
+// Output:
+// Hello, world!
+// Hello, world!
+// Hello, world!
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## JavaScript for loop
+
+The syntax of the for loop is:
+
+```js
+for (initialExpression; condition; updateExpression) {
+  // for loop body
+}
+```
+
+- initialExpression - Initializes a counter variable.
+- condition - The condition to be evaluated. If true, the body of the for loop is executed.
+- updateExpression - Updates the value of initialExpression.
+
+Once an iteration of the loop is completed, the condition is evaluated again. The process continues until the condition is false.
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## JavaScript for loop Example 1
+
+Print numbers from 1 to 5 using a for loop.
+
+```js
+for (let i = 1; i < 6; i++) {
+  console.log(i);
+}
+```
+
+| Iteration | Variable | Condition: i < 6 | Action                             |
+| --------- | -------- | ---------------- | ---------------------------------- |
+| 1st       | i = 1    | true             | 1 is printed. i is increased to 2. |
+| 2nd       | i = 2    | true             | 2 is printed. i is increased to 3. |
+| 3rd       | i = 3    | true             | 3 is printed. i is increased to 4. |
+| 4th       | i = 4    | true             | 4 is printed. i is increased to 5. |
+| 5th       | i = 5    | true             | 5 is printed. i is increased to 6. |
+| 6th       | i = 6    | false            | The loop is terminated.            |
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## JavaScript for loop Example 2
+
+Print sum of n Natural Numbers
+
+```js
+// program to display the sum of natural numbers
+
+let sum = 0;
+const n = 100;
+
+// loop from i = 1 to i = n
+// in each iteration, i is increased by 1
+for (let i = 1; i <= n; i++) {
+  sum += i; // sum = sum + i
+}
+
+console.log(`sum: ${sum}`);
+
+// Output: sum: 5050
+```
+
+Initially, the value of sum is 0, while n has a constant value of 100.
+
+Then, we iterate a for loop from i = 1 to n. In each iteration,
+
+- i is added to sum.
+- Then, the value of i is increased by 1.
+- When i becomes 101, the test condition becomes false and sum will be equal to 0 + 1 + 2 + ... + 100.
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## JavaScript Nested for loops
+
+A for loop can also have another for loop inside it. For each cycle of the outer loop, the inner loop completes its entire sequence of iterations. For example,
+
+```js
+// outer loop
+for (let i = 0; i < 3; i++) {
+  // inner loop
+  for (let j = 0; j < 2; j++) {
+    console.log(`i = ${i}, j = ${j}`);
+  }
+}
+```
+
+Output
+
+```
+i = 0, j = 0
+i = 0, j = 1
+i = 1, j = 0
+i = 1, j = 1
+i = 2, j = 0
+i = 2, j = 1
+```
+
+- Outer Loop - Runs from i = 0 to 2.
+- Inner Loop - Runs from j = 0 to 1.
+
+In each iteration of the outer loop, the inner loop runs from j = 0 to 1.
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## JavaScript Infinite for loop
+
+We can create an infinite for loop by setting a condition that always evaluates to true
+
+```js
+for (let i = 0; true; i++) {
+  console.log('This loop will run forever!');
+}
+```
+
+Output
+
+```
+This loop will run forever!
+This loop will run forever!
+This loop will run forever!
+…
+```
+
+In this example, the condition in the for loop is explicitly set to true.
+
+Since this condition never changes and always evaluates to true, the loop will continue indefinitely (until the memory is full).
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## JavaScript Omitting Parts of the for Loop
+
+We can omit any part of the for loop declaration and include it in a different part of the code.
+
+```js
+// initialization outside the loop
+let i = 0;
+
+// omit initialization and update statements
+for (; i < 3; ) {
+  console.log(`i is ${i}`);
+
+  // increment inside the loop body
+  i++;
+}
+```
+
+Here, we have initialized i before the loop, which iterates as long as i is less than 3.
+
+Notice that i is incremented within the loop body, which allows us to skip the update statement inside the parentheses () of the for loop.
+
+In other words, for (; i < 3; ) indicates omitted initialization and update expression, focusing only on the condition.
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+### JavaScript while loop
+
+The while loop repeatedly executes a block of code as long as a specified condition is true.
+
+```js
+while (condition) {
+  // body of loop
+}
+```
+
+1. The while loop first evaluates the condition inside ( ).
+2. If the condition evaluates to true, the code inside { } is executed.
+3. Then, the condition is evaluated again.
+4. This process continues as long as the condition evaluates to true.
+5. If the condition evaluates to false, the loop stops.
+
+---
+
+<!-- .slide: style="font-size: .5em" -->
+
+### JavaScript while loop Example
+
+```js
+// initialize variable i
+let i = 1;
+
+// loop runs until i is less than 4
+while (i < 4) {
+  console.log(i);
+  i += 1;
+}
+```
+
+```
+1
+2
+3
+```
+
+| Variable | Condition: i < 4 | Action                             | Action                             |
+| -------- | ---------------- | ---------------------------------- | ---------------------------------- |
+| i = 1    | true             | 1 is printed. i is increased to 2. | 1 is printed. i is increased to 2. |
+| i = 2    | true             | 2 is printed. i is increased to 3. | 2 is printed. i is increased to 3. |
+| i = 3    | true             | 3 is printed. i is increased to 4. | 3 is printed. i is increased to 4. |
+| i = 4    | false            | The loop is terminated.            | 4 is printed. i is increased to 5. |
+| 5th      | i = 5            | true                               | 5 is printed. i is increased to 6. |
+| 6th      | i = 6            | false                              | The loop is terminated.            |
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+### JavaScript Infinite while loop
+
+An infinite while loop is a condition where the loop runs infinitely, as its condition is always true
+
+```js
+let i = 1;
+
+// always true condition
+while (i < 5) {
+  console.log(i);
+}
+```
+
+the condition 1 > 1 is always true, which causes the loop body to run forever.
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## JavaScript break statement
+
+The break statement terminates the loop immediately when it's encountered.
+
+```js
+// Program to print the value of i
+
+for (let i = 1; i <= 5; i++) {
+  // break condition
+  if (i == 3) {
+    break;
+  }
+
+  console.log(i);
+}
+```
+
+Output
+
+```
+1
+2
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## JavaScript break statement
+
+The break statement terminates the loop immediately when it's encountered.
+
+```js
+let sum = 0;
+let num = 5;
+
+// infinite loop
+while (true) {
+  if (num < 0) {
+    // terminate the loop if num is negative
+    break;
+  } else {
+    // otherwise, add num to sum
+    sum += num;
+  }
+
+  num--; // decrease num, equals to num = num - 1;
+}
+
+// print the sum
+console.log(`Sum: ${sum}`); // 15, because 5 + 4 + 3 + 2 + 1 + 0
+```
+
+Output
+
+```
+Sum: 15
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## JavaScript break with nested loops
+
+When break is used inside two nested loops, it terminates the inner loop
+
+```js
+// nested for loops
+
+// outer loop
+for (let i = 1; i <= 3; i++) {
+  // inner loop
+  for (let j = 1; j <= 3; j++) {
+    if (i == 2) {
+      break;
+    }
+    console.log(`i = ${i}, j = ${j}`);
+  }
+}
+```
+
+Output
+
+```
+i = 1, j = 1
+i = 1, j = 2
+i = 1, j = 3
+i = 3, j = 1
+i = 3, j = 2
+i = 3, j = 3
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## JavaScript continue Statement
+
+The continue statement skips the current iteration of the loop and proceeds to the next iteration.
+
+```js
+for (let i = 1; i <= 10; ++i) {
+  // skip iteration if value of
+  // i is between 4 and 9
+  if (i > 4 && i < 9) {
+    continue;
+  }
+  console.log(i);
+}
+```
+
+Output
+
+```
+1
+2
+3
+4
+9
+10
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## JavaScript continue Statement
+
+The continue statement skips the current iteration of the loop and proceeds to the next iteration.
+
+```js
+let num = 1;
+
+while (num <= 10) {
+  // skip iteration if num is even
+  if (num % 2 === 0) {
+    ++num;
+    continue;
+  }
+
+  console.log(num);
+}
+```
+
+Output
+
+```
+1
+3
+5
+7
+9
+```
+
+---
+
 #### Used Materials
 
 ```md
-https://www.w3schools.com/js/js_operators.asp
+https://www.programiz.com/javascript/for-loop
 
-https://www.w3schools.com/js/js_assignment.asp
+https://www.programiz.com/javascript/while-loop
 
-https://www.w3schools.com/js/js_datatypes.asp
+https://www.programiz.com/javascript/break-statement
 
-https://www.programiz.com/javascript/data-types
+https://www.programiz.com/javascript/continue-statement
 
-https://www.programiz.com/javascript/operators
+https://www.w3schools.com/js/js_if_else.asp
 
-https://www.programiz.com/javascript/type-conversion
+https://www.w3schools.com/js/js_loop_for.asp
+
+https://www.w3schools.com/js/js_loop_while.asp
+
+https://www.w3schools.com/js/js_break.asp
 ```
