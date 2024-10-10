@@ -202,11 +202,64 @@ console.log(student['marks']['math']); // 75
 
 ## Function syntax
 
+A function is an independent block of code that performs a specific task
+
 ```js
 function name() {
   // body
   //   optional: return value;
 }
+```
+
+---
+
+## Benefits or using Functions
+
+- <b style="color: yellow">Reusable Code</b>: Since functions are independent blocks of code, you can declare a function once and use it multiple times.
+
+- <b style="color: yellow">Organized Code</b>: Dividing small tasks into different functions makes our code easy to organize.
+
+- <b style="color: yellow">Readability</b>: Functions increase readability by reducing redundancy and improving the structure of our code.
+
+---
+
+## Function call
+
+```js
+// create a function
+function greet() {
+  console.log('Hello World!');
+}
+
+// call the function
+greet();
+
+console.log('Outside function');
+```
+
+Output
+
+```md
+Hello World!
+Outside function
+```
+
+---
+
+## JavaScript Function Arguments
+
+```js
+// function with a parameter called 'name'
+function greet(name) {
+  console.log(`Hello ${name}`);
+}
+
+// pass argument to the function
+const res1 = greet('John');
+console.log(res1); // Hello John
+
+const res2 = greet('David');
+console.log(res2); // Hello David
 ```
 
 ---
