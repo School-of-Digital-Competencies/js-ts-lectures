@@ -1,4 +1,4 @@
-## Objects
+## Objects, Arrays, Functions
 
 ---
 
@@ -357,20 +357,205 @@ For instance, the maximum limit can differ between Firefox and Chrome. Whereas, 
 
 ---
 
+## JavaScript Array
+
+---
+
+## JavaScript Array
+
+An array is an object that can store multiple values at once. Arrays allow us to organize related data by grouping them within a single variable.
+
+Instead of
+
+```js
+let fruit1 = 'Apple';
+let fruit2 = 'Banana';
+let fruit3 = 'Orange';
+```
+
+Use
+
+```js
+let fruits = ['Apple', 'Banana', 'Orange'];
+```
+
+---
+
+## Create an Array
+
+We can create an array by placing elements inside an array literal [], separated by commas
+
+```js
+const numbers = [10, 30, 40, 60, 80];
+
+const emptyArray = []; // empty array
+
+const dailyActivities = ['eat', 'work', 'sleep']; // array of strings
+
+const mixedArray = ['work', 1, true]; // array with mixed data types
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Access Elements of an Array
+
+Each element of an array is associated with a number called an index, which specifies its position inside the array
+
+```js
+const numbers = [10, 30, 40, 60, 80];
+console.log(numbers[2]); // 40
+```
+
+| Code       | Description                     |
+| ---------- | ------------------------------- |
+| numbers[0] | Accesses the first element 10.  |
+| numbers[1] | Accesses the second element 30. |
+| numbers[2] | Accesses the third element 40.  |
+| numbers[3] | Accesses the fourth element 60. |
+| numbers[4] | Accesses the fifth element 80.  |
+
+---
+
+## Add Element to an Array: Using the push() Method
+
+The <b style="color: yellow">push()</b> method adds an element <b style="color: yellow">at the end of the array</b>.
+
+```js
+let dailyActivities = ['eat', 'sleep'];
+
+// add an element at the end
+dailyActivities.push('exercise');
+
+console.log(dailyActivities); // [ 'eat', 'sleep', 'exercise' ]
+```
+
+---
+
+## Add Element to an Array: Using the unshift() Method
+
+The <b style="color: yellow">unshift()</b> method adds an element <b style="color: yellow">at the beginning of the array</b>.
+
+```js
+let dailyActivities = ['eat', 'sleep'];
+
+// add an element at the beginning
+dailyActivities.unshift('work');
+
+console.log(dailyActivities); //  [ 'work', 'eat', 'sleep' ]
+```
+
+---
+
+## Change the Elements of an Array
+
+We can add or change elements by accessing the index value
+
+```js
+let dailyActivities = ['eat', 'work', 'sleep'];
+
+// change the second element
+// use array index 1
+dailyActivities[1] = 'exercise';
+
+console.log(dailyActivities); // [ 'eat', 'exercise', 'sleep' ]
+```
+
+---
+
+## Remove Elements From an Array
+
+We can remove an element from any specified index of an array using the splice() method.
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+
+// remove one element starting from index 2
+numbers.splice(2, 1);
+
+console.log(numbers); //  [ 1, 2, 4, 5 ]
+```
+
+---
+
 <!-- .slide: style="font-size: .5em" -->
 
-## Commonly Used Comparison Operators
+## Array Methods
 
-| Operator | Meaning                  | Example            | Boolean Conversion |
-| -------- | ------------------------ | ------------------ | ------------------ |
-| ==       | Equal to                 | 3 == 5 // false    | true               |
-| !=       | Not equal to             | 3 != 4 // true     | false              |
-| ===      | Strictly equal to        | 3 === "3" // false | true               |
-| !==      | Strictly not equal to    | 3 !== "3" // true  | true               |
-| >        | Greater than             | 4 > 4 // false     | true               |
-| <        | Less than                | 3 < 3 // false     | true               |
-| >=       | Greater than or equal to | 4 >= 4 // true     | false              |
-| <=       | Less than or equal to    | 3 <= 3 // true     | false              |
+| Method      | Description                                                                  |
+| ----------- | ---------------------------------------------------------------------------- |
+| concat()    | Joins two or more arrays and returns a result.                               |
+| toString()  | Converts an array to a string of (comma-separated) array values.             |
+| indexOf()   | Searches an element of an array and returns its position (index).            |
+| find()      | Returns the first value of the array element that passes a given test.       |
+| findIndex() | Returns the first index of the array element that passes a given test.       |
+| forEach()   | Calls a function for each element.                                           |
+| includes()  | Checks if an array contains a specified element.                             |
+| sort()      | Sorts the elements alphabetically in strings and ascending order in numbers. |
+| slice()     | Selects part of an array and returns it as a new array.                      |
+| splice()    | Removes or replaces existing elements and/or adds new elements.              |
+
+To learn more, visit [JavaScript Array Methods](https://www.programiz.com/javascript/library/array).
+
+---
+
+## Length of an Array
+
+We can find the length of an array using the length property
+
+```js
+const dailyActivities = ['eat', 'sleep'];
+
+console.log(dailyActivities.length); // Output: 2
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Relationship between Arrays and Objects
+
+In JavaScript, arrays are a type of object. However,
+
+Arrays use numbered indexes to access elements.
+Objects use named indexes (keys) to access values.
+Since arrays are objects, the array elements are stored by reference. Hence, when we assign an array to another variable, we are just pointing to the same array in memory.
+
+So, changing one will change the other because they're essentially the same array
+
+```js
+let arr = ['h', 'e'];
+
+let arr1 = arr; // assign arr to arr1
+
+arr1.push('l'); // change arr1
+
+console.log(arr); // ['h', 'e', 'l']
+console.log(arr1); // ['h', 'e', 'l']
+```
+
+---
+
+## Iterate Through an Array: for loop
+
+A for loop can also be used to iterate over elements of an array
+
+```js
+const fruits = ['apple', 'banana', 'cherry'];
+
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
+```
+
+Output
+
+```
+apple
+banana
+cherry
+```
 
 ---
 
@@ -383,11 +568,5 @@ https://www.programiz.com/javascript/function
 
 https://www.programiz.com/javascript/recursion
 
-https://www.w3schools.com/js/js_if_else.asp
-
-https://www.w3schools.com/js/js_loop_for.asp
-
-https://www.w3schools.com/js/js_loop_while.asp
-
-https://www.w3schools.com/js/js_break.asp
+https://www.programiz.com/javascript/array
 ```
