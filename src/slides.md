@@ -264,6 +264,99 @@ console.log(res2); // Hello David
 
 ---
 
+## The return Statement
+
+We can return a value from a JavaScript function using the return statement.
+
+```js
+// function to find square of a number
+function findSquare(num) {
+  // return square
+  return num * num;
+}
+
+// call the function and store the result
+let square = findSquare(3);
+
+console.log(`Square: ${square}`); // Square: 9
+```
+
+---
+
+## The return Statement Terminates the Function
+
+Any code written in the function after the return statement is not executed
+
+```js
+function display() {
+  console.log('This will be executed.'); // 'This will be executed.'
+
+  return 'Returning from function.';
+
+  console.log('This will not be executed.');
+}
+
+let message = display();
+console.log(message); // 'Returning from function.'
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Function Expressions
+
+JavaScript function expression is a way to store functions in variables
+
+```js
+// store a function in the square variable
+let square = function (num) {
+  return num * num;
+};
+
+console.log(square(5)); // 25
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Function Recursion
+
+Recursion is a technique where a function calls itself repeatedly to solve a problem
+
+```js
+// recursive function
+function counter(count) {
+  // display count
+  console.log(count);
+
+  // condition for stopping
+  if (count > 1) {
+    // call counter with new value of count
+    counter(count - 1);
+  } else {
+    // terminate execution
+    return;
+  }
+}
+
+// start recursion
+counter(5);
+```
+
+---
+
+## Function Recursion limit
+
+The recursion limit prevents errors caused by too many nested function calls.
+
+However, the limit varies depending on the JavaScript engine and the environment in which the code is running.
+
+For instance, the maximum limit can differ between Firefox and Chrome. Whereas, devices with higher memory might have higher recursion limits than devices with less memory.
+
+---
+
 <!-- .slide: style="font-size: .5em" -->
 
 ## Commonly Used Comparison Operators
@@ -284,13 +377,11 @@ console.log(res2); // Hello David
 #### Used Materials
 
 ```md
-https://www.programiz.com/javascript/for-loop
+https://www.programiz.com/javascript/object
 
-https://www.programiz.com/javascript/while-loop
+https://www.programiz.com/javascript/function
 
-https://www.programiz.com/javascript/break-statement
-
-https://www.programiz.com/javascript/continue-statement
+https://www.programiz.com/javascript/recursion
 
 https://www.w3schools.com/js/js_if_else.asp
 
