@@ -122,6 +122,8 @@ console.log(2 === '2'); // false
 
 ---
 
+<!-- .slide: style="font-size: .8em" -->
+
 ## Strict Not Equal To Operator
 
 The strict not equal to operator !== evaluates to
@@ -161,6 +163,8 @@ console.log(2 > 5); // false
 ```
 
 ---
+
+<!-- .slide: style="font-size: .8em" -->
 
 ## Greater Than Or Equal To Operator
 
@@ -213,6 +217,70 @@ Logical operators return a boolean value by evaluating boolean expressions
 | expression1 && expression2           | true only if both expression1 and expression2 are true | true               |
 | expression1 &#124;&#124; expression2 | true if either expression1 or expression2 is true      | false              |
 | !expression                          | false if expression is true and vice versa             | true               |
+
+---
+
+## Operator Precedence
+
+Which operator gets called first? Operators are called in order of precedence (higher precedence wins)
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence
+
+---
+
+## Operator Associativity
+
+When operators have the same precedence, what order operators get called in: left-to-right or right-to-left
+
+```js
+3 + 4 * 5; // 23, first *, then +
+```
+
+---
+
+## Operator Precedence and Associativity
+
+Question
+
+```js
+console.log(3 + 10 * 2);
+console.log((3 + 10) * 2);
+```
+
+---
+
+## Operator Precedence and Associativity
+
+Answer
+
+```js
+console.log(3 + 10 * 2); // 23
+console.log((3 + 10) * 2); // 26, because the parentheses change the order
+```
+
+---
+
+## Operator Precedence and Associativity
+
+Question
+
+```js
+const a = 1;
+const b = 2;
+typeof a + b;
+```
+
+---
+
+## Operator Precedence and Associativity
+
+Answer
+
+```js
+const a = 1;
+const b = 2;
+typeof a + b; // Equivalent to (typeof a) + b; result is "number2"
+```
 
 ---
 
@@ -890,6 +958,8 @@ Output
 #### Used Materials
 
 ```md
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence
+
 https://www.programiz.com/javascript/for-loop
 
 https://www.programiz.com/javascript/while-loop
