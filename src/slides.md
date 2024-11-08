@@ -8,7 +8,7 @@
 const age = 22;
 const isAllowed = age >= 18 ? 'Yes' : 'No';
 
-console.log(name); // ?
+console.log(isAllowed); // ?
 ```
 
 ---
@@ -19,7 +19,7 @@ console.log(name); // ?
 const age = 22;
 const isAllowed = age >= 18 ? 'Yes' : 'No';
 
-console.log(name); // 'Yes'
+console.log(isAllowed); // 'Yes'
 ```
 
 ---
@@ -167,7 +167,7 @@ if (age >= 14 && age <= 18) {
   console.log('Enter age again');
 }
 
-console.log(message); // 16
+console.log(message); // You are too little
 ```
 
 ---
@@ -517,6 +517,8 @@ If you try to access a variable before it's declared, this will result in the Re
 ---
 
 ## Demo
+
+https://excalidraw.com/#json=IIhQ_U5zQfK4qJSgrBzDP,60MEbdgtePywUfYAnOwfYA
 
 ---
 
