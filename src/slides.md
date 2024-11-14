@@ -589,6 +589,152 @@ ivan.print(); // this is undefined
 
 ---
 
+# Functions call, apply, bind
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## Function call
+
+> <b style="color: yellow">Call</b> is a function that helps you change the environment of the invoking function. It helps you replace the value of this inside a function with whatever value you want.
+
+```js
+func.call(thisObj, args1, args2, ...)
+```
+
+- <b style="color: yellow">func</b> is a function that needs to be invoked with a different this object
+- <b style="color: yellow">thisObj</b> is an object or a value that needs to be replaced with the this keyword present inside the function func
+- <b style="color: yellow">args1, args2</b> are arguments that are passed to the invoking function with the changed this object.
+
+---
+
+## Function call
+
+```js
+function greet(name) {
+  console.log(`Hello, ${name}! My name is ${this.name}.`);
+}
+
+let person = {
+  name: 'John',
+};
+
+greet.call(person, 'Alice'); // prints 'Hello, Alice! My name is John.'
+```
+
+---
+
+## Function call
+
+```js
+const ivan = {
+  name: 'Ivan',
+  introduce: function () {
+    console.log(this.name);
+  },
+};
+
+const maria = { name: 'Maria' };
+
+ivan.introduce(); // prints 'Ivan'
+maria.introduce(); // TypeError: maria.introduce is not a function
+ivan.introduce.call(maria); // prints 'Maria'
+```
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## Function apply
+
+> <b style="color: yellow">Apply</b> is a function that helps you change the environment of the invoking function. It helps you replace the value of this inside a function with whatever value you want.
+
+```js
+func.apply(thisObj, [args1, args2, ...])
+```
+
+- <b style="color: yellow">func</b> is a function that needs to be invoked with a different this object
+- <b style="color: yellow">thisObj</b> is an object or a value that needs to be replaced with the this keyword present inside the function func
+- <b style="color: yellow">[args1, args2, ...]</b> is an array of arguments that are passed to the invoking function with the changed this object.
+
+---
+
+## Function apply
+
+```js
+function greet(name, age) {
+  console.log(
+    `Hello, ${name}! My name is ${this.name}. I heard you are ${age} years old`
+  );
+}
+
+let person = {
+  name: 'John',
+};
+
+greet.apply(person, ['Alice', 25]); // prints 'Hello, Alice! My name is John. I heard you are 25 years old'
+```
+
+---
+
+## Function apply
+
+```js
+const ivan = {
+  name: 'Ivan',
+  introduce: function () {
+    console.log(this.name);
+  },
+};
+
+const maria = { name: 'Maria' };
+
+ivan.introduce(); // prints 'Ivan'
+maria.introduce(); // TypeError: maria.introduce is not a function
+ivan.introduce.apply(maria); // prints 'Maria'
+```
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## Function bind
+
+> <b style="color: yellow">Bind</b> is a function that helps you create another function that you can execute later with the environment of this that is provided.
+
+```js
+func.bind(thisObj, arg1, arg2, ..., argN);
+```
+
+- <b style="color: yellow">func</b> is a function that needs to be invoked with a different this object
+- <b style="color: yellow">thisObj</b> is an object or a value that needs to be replaced with the this keyword present inside the function func
+- <b style="color: yellow">arg1, arg2…argN</b> are arguments that are passed to the invoking function with the changed this object.
+
+---
+
+## Function bind
+
+```js
+function greet(name, age) {
+  console.log(
+    `Hello, ${name}! My name is ${this.name}. I heard you are ${age} years old`
+  );
+}
+
+let person = {
+  name: 'John',
+};
+
+const greetLater = greet.bind(person, ['Alice', 25]); // don't call a function greet, just creates a reference to greet with binded person environment
+
+greetLater(); // prints 'Hello, Alice! My name is John. I heard you are 25 years old'
+```
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
 ## Used materials
 
 - https://www.youtube.com/watch?v=fQ7_GT8_zeM
