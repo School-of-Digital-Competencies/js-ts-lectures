@@ -1,6 +1,7 @@
 # JavaScript Classes Tasks
 
 [Back to all tasks](../../README.md)
+
 Task 1: Implementing a Class for a Person
 Create a class Person that includes properties for the person's name and age. Add methods to introduce the person, check if they are an adult, and update their age.
 Usage:
