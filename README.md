@@ -7,3 +7,4 @@
 - [objects](tasks/javascript/objects.md)
 - [functions](tasks/javascript/functions.md)
 - [prototypes](tasks/javascript/prototypes.md)
+- [classes](tasks/javascript/classes.md)
