@@ -28,8 +28,8 @@ With strict mode, you can not, for example, use undeclared variables.
 
 ```js
 'use strict';
-x = 3.14;
-console.log(x); // ReferenceError: x is not defined
+x = 3.14; // ReferenceError: x is not defined
+console.log(x);
 ```
 
 ---
@@ -46,8 +46,8 @@ myFunction();
 
 function myFunction() {
   'use strict';
-  y = 3.14;
-  console.log(y); // ReferenceError: y is not defined
+  y = 3.14; // ReferenceError: y is not defined
+  console.log(y);
 }
 ```
 
@@ -174,11 +174,15 @@ console.log(mappedArr); // [1, 2, 9]
 
 ---
 
+# Keyword new
+
+---
+
 <!-- .slide: style="font-size: .8em" -->
 
 # Object creation using keyword new
 
-Problem: what if there are 100 persons? Or 20-30 object properties?
+Problem: what if there are 100 persons? Or 20-30 object properties like name, age, etc?
 
 ```js
 const ivan = { name: 'Ivan' };
@@ -726,9 +730,11 @@ let person = {
   name: 'John',
 };
 
-const greetLater = greet.bind(person, ['Alice', 25]); // don't call a function greet, just creates a reference to greet with binded person environment
-
+const greetLater = greet.bind(person, 'Alice', 25); // don't call a function greet, just creates a reference to greet with binded person environment
 greetLater(); // prints 'Hello, Alice! My name is John. I heard you are 25 years old'
+
+const greetLater2 = gree.bind(person);
+greetLater2('Ivan', 30); // prints 'Hello, Ivan! My name is John. I heard you are 30 years old'
 ```
 
 ---
