@@ -5,6 +5,7 @@
 - [numbers](tasks/javascript/numbers.md)
 - [strings](tasks/javascript/strings.md)
 - [objects](tasks/javascript/objects.md)
+- [arrays](tasks/javascript/arrays.md)
 - [functions](tasks/javascript/functions.md)
 - [prototypes](tasks/javascript/prototypes.md)
 - [classes](tasks/javascript/classes.md)
