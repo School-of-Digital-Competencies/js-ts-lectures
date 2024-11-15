@@ -130,3 +130,69 @@ todoList.markTaskAsCompleted(0);
 console.log(todoList.listTasks()); // [{ title: "Buy groceries", completed: true }, { title: "Clean the house", completed: false }]
 console.log(todoList.getCompletedCount()); // 1
 ```
+
+Task 11: Creating a Class for a Vehicle
+Create a base class Vehicle with properties for make, model, and year. Then create a subclass Car that extends Vehicle and adds properties for the number of doors and trunk size. Include methods to get the vehicle's age and a full description.
+
+Usage:
+
+```js
+const car = new Car("Honda", "Civic", 2020, 4, 450);
+console.log(car.getCarDetails());
+console.log(car.getAge(2023));
+```
+
+Task 12: Implementing a Class for a User
+Create a base class User with properties for username and email. Then create a subclass Admin that extends User and adds properties for admin level and permissions. Include methods to get user info and admin details.
+
+Usage:
+
+```js
+const admin = new Admin("adminUser ", "admin@example.com", 1, [
+  "read",
+  "write",
+  "delete",
+]);
+console.log(admin.getAdminDetails());
+```
+
+Task 13: Creating a Class for a Shape
+Create a base class Shape with a method to calculate area. Then create subclasses Rectangle and Circle that extend Shape and implement their specific area calculations.
+
+Usage:
+
+```js
+const rectangle = new Rectangle(10, 5);
+console.log(rectangle.calculateArea());
+
+const circle = new Circle(3);
+console.log(circle.calculateArea());
+```
+
+Task 14: Implementing a Class for a Product
+Create a base class Product with properties for name and price. Then create subclasses Electronics and Clothing that extend Product and add specific properties like warranty for electronics and size for clothing. Include methods to get product details.
+
+Usage:
+
+```js
+const laptop = new Electronics("Laptop", 1200, 2);
+console.log(laptop.getDetails());
+
+const shirt = new Clothing("Shirt", 30, "M");
+console.log(shirt.getDetails());
+```
+
+Task 15: Creating a Class for a Bank Account with Inheritance
+Create a base class BankAccount with properties for account holder's name and balance. Then create subclasses SavingsAccount and CheckingAccount that extend BankAccount and add specific properties like interest rate for savings and transaction fees for checking. Include methods to get account details.
+
+Usage:
+
+```js
+const savings = new SavingsAccount("Alice", 1000, 0.05);
+savings.applyInterest();
+console.log(savings.getAccountDetails());
+
+const checking = new CheckingAccount("Bob", 500, 2);
+checking.withdraw(100);
+console.log(checking.getAccountDetails());
+```
