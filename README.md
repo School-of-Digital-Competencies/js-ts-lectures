@@ -8,3 +8,4 @@
 - [functions](tasks/javascript/functions.md)
 - [prototypes](tasks/javascript/prototypes.md)
 - [classes](tasks/javascript/classes.md)
+- [async](tasks/javascript/async.md)
