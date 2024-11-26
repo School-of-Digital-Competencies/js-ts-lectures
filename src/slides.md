@@ -685,7 +685,7 @@ console.log(person); // { name: 'Ivan' }
 
 <!-- .slide: style="font-size: .7em" -->
 
-## Classes: best practices so for
+## Classes: best practices so far
 
 Define and classes when you need to have a template for creating objects that:
 
@@ -794,6 +794,8 @@ ivan.introduce(); // access to public class methods
 ivan.age; // access to private class field will result as undefined
 ivan.#age; // access to private class field will result with an error
 ```
+
+---
 
 <!-- .slide: style="font-size: .7em" -->
 
@@ -913,3 +915,283 @@ Colors.getColorName(Colors.BLUE); // 'blue'
 ```
 
 ---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Classes: derived class
+
+> A derived class is a class that extends the public and static features of an existing class (parent class). It cannot access its parent class private fields.
+
+- Defined with a keyword extends
+- A base class is called a parent class
+- A derived class is called a child class
+
+```js
+class BaseClass {}
+
+class DerivedClass extends BaseClass {}
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: derived class example
+
+```js
+class Person {}
+
+class Student extends Person {}
+
+const ivan = new Person();
+const maria = new Student();
+
+console.log(ivan); // { [[Prototype]]: { constructor: class Person, [[Prototype]]: Object } }
+console.log(Person.prototype); // { constructor: class Person, [[Prototype]]: Object }
+console.log(maria); // { [[Prototype]]: { constructor: class Student, [[Prototype]]: Person } }
+console.log(Student.prototype); // { constructor: class Student, [[Prototype]]: Person }
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: derived class example
+
+```js
+class Person {
+  name = 'common';
+}
+
+class Student extends Person {}
+
+const ivan = new Person();
+const maria = new Student();
+
+console.log(ivan); // { name: 'common' }
+console.log(maria); // { name: 'common' }
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: derived class example
+
+A derived class field will overrite parent class field with the same name
+
+```js
+class Person {
+  name = 'parent';
+}
+
+class Student extends Person {
+  name = 'student';
+}
+
+const ivan = new Person();
+const maria = new Student();
+
+console.log(ivan); // { name: 'parent' }
+console.log(maria); // { name: 'student' }
+```
+
+---
+
+## Classes: derived class super keyword
+
+The super keyword searches a parent class or object literal for a specified static or prototypal property.
+
+You can use the super keyword as a “function caller” or “property accessor.”
+
+```js
+super(arg1, arg2, ...); // function caller
+
+super.someField; // property accessor
+super.someMethod(); // property accessor
+```
+
+---
+
+## Classes: super as a function caller
+
+<!-- .slide: style="font-size: .8em" -->
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Student extends Person {
+  constructor(name, age) {
+    super(name); // parent constructor call with arguments
+    this.age = age;
+  }
+}
+
+const ivan = new Person('Ivan');
+const maria = new Student('Maria', 22);
+
+console.log(ivan); // { name: 'Ivan' }
+console.log(maria); // { name: 'Maria', age: 22 }
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: super as a function caller
+
+- Calling super() allows JavaScript to use the parent class’s constructor to initialize this.
+- It's required to call super() before using the keyword this. Otherwise, the an error will be thrown.
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Student extends Person {
+  constructor(name, age) {
+    super(name); // parent constructor call with arguments
+    this.age = age;
+  }
+}
+
+const ivan = new Person('Ivan');
+const maria = new Student('Maria', 22);
+
+console.log(ivan); // { name: 'Ivan' }
+console.log(maria); // { name: 'Maria', age: 22 }
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Classes: super as a property accessor
+
+```js
+class Person {
+  #minAge = 18;
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  get minAge() {
+    return this.#minAge;
+  }
+}
+
+class Student extends Person {
+  constructor(name, age) {
+    super(name);
+
+    this.age = age;
+  }
+
+  isAgeValid() {
+    return this.age >= super.minAge;
+  }
+}
+
+const ivan = new Person('Ivan');
+const maria = new Student('Maria', 17);
+
+maria.isAgeValid(); // false
+maria.age = 22;
+maria.isAgeValid(); // true
+```
+
+---
+
+## Classes and arrow functions
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes and arrow functions
+
+- sayHi method is defined in the class instance, not in the prototype
+
+```js
+class Person {
+  name = 'Ivan';
+
+  sayHi = () => {
+    console.log(this.name);
+  };
+}
+
+const person = new Person();
+
+person.sayHi(); // 'Ivan'
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes and arrow functions
+
+- sayHi method keeps a reference in this to the execution context when has been created
+
+```js
+class Person {
+  name = 'Ivan';
+
+  sayHi = () => {
+    console.log(this.name);
+  };
+}
+
+const person = new Person();
+
+person.sayHi(); // 'Ivan'
+
+const { sayHi } = person;
+
+sayHi(); // 'Ivan' --> finds 'name' in the execution context where this is bind to person
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes and arrow functions
+
+- not possible to use as constructor function
+
+```js
+class Person {
+  constructor = (name) => {
+    // error
+    this.name = name;
+  };
+}
+
+const person = new Person('Ivan');
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Used materials
+
+https://www.freecodecamp.org/news/javascript-class-handbook/
+
+https://www.freecodecamp.org/news/javascript-arrow-functions-in-depth/#heading-when-you-should-not-use-arrow-functions
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+
+https://prateeksurana.me/blog/how-javascript-classes-work-under-the-hood/#
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+https://www.reddit.com/r/learnjavascript/comments/1bk8600/arrow_functions_as_es6class_methods_when_did_the/
