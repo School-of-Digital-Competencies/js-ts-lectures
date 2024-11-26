@@ -565,81 +565,96 @@ In many other languages, classes, or constructors, are clearly distinguished fro
 
 ---
 
-<!-- .slide: style="font-size: .7em" -->
+<!-- .slide: style="font-size: .8em" -->
 
-## Classes: Declaration
+## Classes: Syntax
+
+- Define with keyword class
+- Provide a name for the class
+- Describe the body of the class
+- Create an instance of a class with keyword new
+- Use a class instance
 
 ```js
-class MyClass {
-  // Constructor
-  constructor() {
-    // Constructor body
-  }
-  // Instance field
-  myField = 'foo';
-  // Instance method
-  myMethod() {
-    // myMethod body
-  }
-  // Static field
-  static myStaticField = 'bar';
-  // Static method
-  static myStaticMethod() {
-    // myStaticMethod body
-  }
-  // Static block
-  static {
-    // Static initialization code
-  }
-  // Fields, methods, static fields, and static methods all have
-  // "private" forms
-  #myPrivateField = 'bar';
+class Person {
+  name = 'Ivan';
 }
+
+const person = new Person();
+person.name; // 'Ivan'
 ```
 
-```js
-function MyClass() {
-  this.myField = 'foo';
-  // Constructor body
-}
-MyClass.myStaticField = 'bar';
-MyClass.myStaticMethod = function () {
-  // myStaticMethod body
-};
-MyClass.prototype.myMethod = function () {
-  // myMethod body
-};
+---
 
-(function () {
-  // Static initialization code
-})();
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: methods defined with =
+
+> A class field is a property defined directly in a class body
+
+Class fields are accessible inside class body and outside of it
+
+```js
+class Person {
+  name = 'Ivan'; // class field called 'name'
+}
+
+const person = new Person();
+person.name; // access to the class field called 'name', will print 'Ivan'
+person.name = 'Maria'; // access to the class field called 'name' and set a new value
+person.name; // 'Maria'
 ```
 
 ---
 
 <!-- .slide: style="font-size: .7em" -->
 
-## Classes: Creating an instance
+## Classes: fields
 
-Use keyword new to create a class instance
+Class fields can store a function. A function defined in such way is accessible in the class instance, not in the class prototype
 
 ```js
-class MyClass {
-  // Constructor
-  constructor() {
-    // Constructor body
-  }
-  // Instance field
-  myField = 'foo';
-  // Instance method
-  myMethod() {
-    // myMethod body
+class Person {
+  name = 'Ivan'; // class field called 'name'
+
+  // class method defined with = is stored in the class instance, not in the class prototype
+  getAge = function () {
+    return 22;
+  };
+}
+
+const person = new Person();
+
+person.getAge(); // 22
+
+console.log(person); //  { name: 'Ivan', getAge: ƒ, [[Prototype]]: { constructor: class Person, [[Prototype]]: Object } }
+console.log(Person.prototype); // { constructor: class Person, [[Prototype]]: Object }
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Classes: methods defined without =
+
+A function defined in such way is accessible in the class prototype
+
+```js
+class Person {
+  name = 'Ivan'; // class field called 'name'
+
+  // class method defined with = is stored in the class prototype
+  getAge() {
+    return 22;
   }
 }
 
-const myInstance = new MyClass();
-console.log(myInstance.myField); // 'foo'
-myInstance.myMethod();
+const person = new Person();
+
+person.getAge(); // 22
+
+console.log(person); //  { name: 'Ivan', [[Prototype]]: { constructor: class Person, getAge: ƒ, [[Prototype]]: Object } }
+console.log(Person.prototype); // { constructor: class Person, getAge: ƒ, [[Prototype]]: Object }
 ```
 
 ---
@@ -648,11 +663,16 @@ myInstance.myMethod();
 
 ## Classes: contructor
 
-Each class instance has its own properties
+> A constructor() is the default prototypal method that comes built-in with every JavaScript class.
+
+It's optional to define constructor method inside a class body. However, if you do not create one, JavaScript will automatically add an empty one.
+
+Only one **construct** method is allowed
 
 ```js
 class Person {
   constructor(name) {
+    // this refers to the class instance
     this.name = name;
   }
 }
@@ -665,88 +685,165 @@ console.log(person); // { name: 'Ivan' }
 
 <!-- .slide: style="font-size: .7em" -->
 
-## Classes: methods
+## Classes: best practices so for
 
-Methods are shared between all instances of a classes (Accessible by Propotype)
+Define and classes when you need to have a template for creating objects that:
+
+- could have group some data inside an instance
+- provide functions to work with such data
+
+Class definition
+
+- put methods in the class propotype, not in the class instance, to get benefits from propotypical inheritance
 
 ```js
 class Person {
-  constructor(name) {
-    this.name = name;
+  constructor(firstname, lastname) {
+    this.firstname = firstname;
+    this.lastname = lastname;
   }
 
-  sayHi() {
-    console.log(`Hi, I'm ${this.name}`);
+  introduce() {
+    return `Hi, my name is ${this.firstname} ${this.lastname}`;
   }
 }
 
-const person = new Person('Ivan');
-console.log(person); // { name: 'Ivan', sayHi: f }
+const ivan = new Person('Ivan', 'Martynov');
+ivan.introduce(); // 'Hi, my name is Ivan Martynov'
+```
 
-person.sayHi(); // Hi, I'm Ivan
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: encapsulation and class fields
+
+> In software systems, encapsulation refers to the bundling of data with the mechanisms or methods that operate on the data. It may also refer to the limiting of direct access to some of that data, such as an object's components. Essentially, encapsulation prevents external code from being concerned with the internal workings of an object.
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: encapsulation and class fields
+
+Three types of class fields are:
+
+- Public class fields
+- Private class fields
+- Static class fields
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: public class fields
+
+Accessible for read and write inside class body and outside of the class body (class instance)
+
+```js
+class Person {
+  age = 20; // default value for public class field 'age'
+
+  constructor(name) {
+    this.name = name; // set value for public class field 'name' on object instance create
+  }
+
+  introduce() {
+    return `Hi, my name is ${this.name} and I'm ${this.age} years old`;
+  }
+}
+
+const ivan = new Person('Ivan');
+ivan.introduce(); // access to public class methods
+
+ivan.name = 'Maria'; // access to public class field and set new value
+
+ivan.age; // access to public class field and get value
 ```
 
 ---
 
 <!-- .slide: style="font-size: .7em" -->
 
-## Classes: private fields
+## Classes: private class fields
 
-Question: how to prevent accessed to name property in the class instance?
+Accessible for read and write inside class body and NOT outside of the class body (class instance)
+
+Use symbol # to define private class field
 
 ```js
 class Person {
-  constructor(name) {
-    this.name = name;
+  #age = 20; // default value for private class field '#age'
+  #lastname; // default value for private class field '#lastname' is undefined
+
+  constructor(firstname, lastname) {
+    this.firstname = firstname; // set value for public class field 'name' on object instance create
+    this.#lastname = lastname; // set value for private class field 'name' on object instance create
   }
 
-  sayHi() {
-    console.log(`Hi, I'm ${this.name}`);
+  introduce() {
+    return `Hi, my name is ${this.firstname} ${this.#lastname} and I'm ${
+      this.#age
+    } years old`;
   }
 }
 
-const person = new Person('Ivan');
+const ivan = new Person('Ivan', 'Martynov');
+ivan.introduce(); // access to public class methods
 
-person.sayHi(); // Hi, I'm Ivan
-person.name = 'Maria';
-person.sayHi(); // Hi, I'm Maria
+ivan.age; // access to private class field will result as undefined
+ivan.#age; // access to private class field will result with an error
 ```
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Classes: static class fields
+
+Accessible for read and write from the class itself - those fields are not in the class instance or in the class prototype
+
+Use keyword static to define static class fields
+
+```js
+class Person {
+  static age = 20; // default value for private class field '#age'
+
+  constructor(name) {
+    this.name = name; // set value for public class field 'name' on object instance create
+  }
+
+  introduce() {
+    // static field access inside class body
+    return `Hi, my name is ${this.name} and I'm ${Person.age} years old`;
+  }
+
+  static print() {
+    console.log('Static method called');
+  }
+}
+
+const ivan = new Person('Ivan');
+
+Person.age; // access to the static class field
+Person.print(); // access to the static class method
+```
+
+---
+
+<!-- .slide: style="font-size: .8em" -->
+
+## Classes: encapsulation best practices so far
+
+- Encapsulate data reasonably with private class fields
+- Use getters/setters class methods to provide an access to the private class fields if needed
+- Use static class fields to store some contants or "magic values"
 
 ---
 
 <!-- .slide: style="font-size: .7em" -->
 
-## Classes: private fields
+## Classes: encapsulation best practices so far
 
-Answer: how to prevent accessed to name property in the class instance?
-
-```js
-class Person {
-  #name;
-
-  constructor(name) {
-    this.#name = name;
-  }
-
-  sayHi() {
-    console.log(`Hi, I'm ${this.#name}`);
-  }
-}
-
-const person = new Person('Ivan');
-
-person.sayHi(); // Hi, I'm Ivan
-person.#name = 'Maria'; // SyntaxError: Private field '#values' must be declared in an enclosing class
-person.sayHi(); // Hi, I'm Ivan
-```
-
----
-
-<!-- .slide: style="font-size: .7em" -->
-
-## Classes: private fields + getter/setters
-
-Answer: how to prevent accessed to name property in the class instance?
+Use getters/setters class methods to provide an access to the private class fields if needed
 
 ```js
 class Person {
@@ -781,6 +878,38 @@ person.name; // 'Ivan' calls get name() function
 person.name = 'Maria'; // calls set name('Maria') function
 person.sayHi(); // Hi, I'm Maria
 person.name; // 'Maria'
+```
+
+---
+
+<!-- .slide: style="font-size: .7em" -->
+
+## Classes: encapsulation best practices so far
+
+Use static class fields to store some contants or "magic values"
+
+```js
+class Colors {
+  static RED = '#ff0000';
+  static GREEN = '#00ff00';
+  static BLUE = '#0000ff';
+
+  static ALL = [Colors.RED, Colors.GREEN, Colors.BLUE];
+
+  static getColorName(colorCode) {
+    return colorCode === Colors.RED
+      ? 'red'
+      : colorCode === Colors.GREEN
+      ? 'green'
+      : colorCode === Colors.BLUE
+      ? 'blue'
+      : 'unknown';
+  }
+}
+
+Colors.GREEN; // '#00ff00'
+Colors.ALL; // ['#ff0000', '#00ff00', '#0000ff']
+Colors.getColorName(Colors.BLUE); // 'blue'
 ```
 
 ---
