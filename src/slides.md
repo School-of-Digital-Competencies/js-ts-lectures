@@ -760,10 +760,422 @@ fetchData()
 
 ---
 
+# Promisifying callbacks
+
+---
+
+<!-- .slide: style="font-size: .6em" -->
+
+## Promisifying callbacks: The Geolocation API
+
+> Promisifying a callback means to wrap callback based API into promise
+
+Callback based API
+
+```js
+navigator.geolocation.getCurrentPosition(
+  (position) => console.log(position), // success callback
+  (error) => console.error(error) // error callback
+);
+```
+
+Promisifying
+
+```js
+function getCurrentPosition() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+getCurrentPosition()
+  .then((position) => console.log(position))
+  .catch((error) => console.error(error));
+```
+
+---
+
+<!-- .slide: style="font-size: .6em"-->
+
+## Promisifying callbacks: Custom load data
+
+Callback approach
+
+```js
+function fetchData(from, callback) {
+  var data = [1, 2, 3, 4, 5];
+
+  setTimeout(function () {
+    if (from >= data.length) {
+      callback({ error: 'Invalid from value' });
+    } else {
+      const slice = data.slice(from);
+      callback(null, slice);
+    }
+  }, 250);
+}
+
+fetchData(2, function (err, data) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Fetch data', data);
+  }
+});
+```
+
+---
+
+<!-- .slide: style="font-size: .6em"-->
+
+## Promisifying callbacks: Custom load data
+
+Promisifying
+
+```js
+function fetchData(from, callback) {
+  var data = [1, 2, 3, 4, 5];
+
+  setTimeout(function () {
+    if (from >= data.length) {
+      callback({ error: 'Invalid from value' });
+    } else {
+      const slice = data.slice(from);
+      callback(null, slice);
+    }
+  }, 250);
+}
+
+function fetchDataPromise(from) {
+  return new Promise((resolve, reject) => {
+    fetchData(from, function (err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+}
+
+fetchDataPromise(2)
+  .then((data) => {
+    console.log('Fetched data', data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+
+---
+
+# Exceptions. Try, catch, finally
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Exceptions
+
+Built-in error objects like Error, SyntaxError, ReferenceError, TypeError
+
+```js
+new Error('Something bad happened'); // Error: Something bad happened at set:1:13
+new SyntaxError('Something bad happened'); // SyntaxError: Something bad happened at set:1:13
+new ReferenceError('Something bad happened'); // Error: Something bad happened at set:1:13
+// ...
+```
+
+Custom error object
+
+```js
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+
+new ValidationError('Something bad happened'); // ValidationError: Something bad happened at ...
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Try, catch
+
+Try/catch allows to "catch" errors and run some code in case of an error
+
+```js
+try {
+  // run code inside try { ... }
+  // if no any error occurs, catch { ... } will be ignored
+  // otherwise ignore the rest code in the try { ... } and run code inside catch { ... }
+} catch (err) {
+  // if any error occurs, err identifier will contain an instance of an Error or its derived objects
+}
+```
+
+Example
+
+```js
+try {
+  test(); // test is not defined, so an error will be thrown when JS reaches that code
+} catch (err) {
+  console.error(err); // prints a message 'ReferenceError: test is not defined'
+}
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Throw
+
+Use keyword throw to generate an error
+
+Syntax
+
+```js
+throw new Error('Something bad happened');
+```
+
+Example
+
+```js
+const stringValue = prompt('Enter number'); // 'gfd'
+const numberValue = Number(stringValue); // NaN
+
+if (Number.isNaN(numberValue)) {
+  // true
+  throw new Error('Incorrect number');
+} else {
+  console.log(numberValue);
+}
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Finally
+
+Run code or after try, or after catch
+
+```js
+try {
+  test(); // test is not defined, so an error will be thrown when JS reaches that code
+} catch (err) {
+  console.error(err); // prints a message 'ReferenceError: test is not defined'
+} finally {
+  console.log('Finally'); // prints a message 'Finally'
+}
+```
+
+---
+
+# Async/await
+
+---
+
+<!-- .slide: style="font-size: .5em"-->
+
+## Async function
+
+> An async function declaration creates an AsyncFunction object. Each time when an async function is called, it returns a new Promise which will be resolved with the value returned by the async function, or rejected with an exception uncaught within the async function.
+
+Syntax
+
+```js
+async function name(param0) {
+  statements;
+}
+async function name(param0, param1) {
+  statements;
+}
+async function name(param0, param1, /* …, */ paramN) {
+  statements;
+}
+```
+
+Where
+
+- name: a name of a function
+- param: parameters passed to the function
+- statements: code to be performed
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Async function
+
+Return value will be wrapped into Promise
+
+```js
+async function fetchData() {
+  return [1, 2, 3];
+}
+```
+
+Equals
+
+```js
+async function fetchData() {
+  return Promise.resolve([1, 2, 3]);
+}
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Async function
+
+> The body of an async function can be thought of as being split by zero or more await expressions
+
+```js
+async function fetchData() {
+  return await [1, 2, 3];
+}
+
+fetchData().then((data) => console.log(data)); // [1, 2, 3]
+```
+
+Equals
+
+```js
+function fetchData() {
+  return Promise.resolve([1, 2, 3]);
+}
+
+fetchData().then((data) => console.log(data)); // [1, 2, 3]
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Async function: several awaits
+
+```js
+async function fetchData() {
+  const names = await new Promise((resolve) =>
+    setTimeout(() => resolve(['Ivan', 'Mariya']))
+  );
+  const ages = await new Promise((resolve) =>
+    setTimeout(() => resolve([22, 24]))
+  );
+
+  const data = names.map((item, index) => ({ name: item, age: ages[index] }));
+
+  return data;
+}
+
+fetchData().then((data) => console.log(data)); // [ { name: 'Ivan', age: 22 }, { name: 'Mariya', age: 24 } ]
+```
+
+---
+
+<!-- .slide: style="font-size: .6em"-->
+
+## Try/catch with async/await
+
+Without try/catch
+
+```js
+async function fetchData(from) {
+  if (from >= 4) {
+    throw new Error('Invalid from value'); // the same as await Promise.reject(new Error("Invalid from value"));
+  }
+
+  return await [1, 2, 3];
+}
+
+fetchData(5)
+  .then((data) => console.log(data))
+  .catch((err) => console.error(err));
+```
+
+With try/catch
+
+```js
+async function fetchData(from) {
+  if (from >= 4) {
+    throw new Error('Invalid from value'); // the same as await Promise.reject(new Error("Invalid from value"));
+  }
+
+  return await [1, 2, 3];
+}
+
+(async () => {
+  try {
+    const data = await fetchData(5);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+```
+
+---
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
+## Async function: several awaits
+
+```js
+function fetchNames() {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(['Ivan', 'Mariya']))
+  );
+}
+
+function fetchAges() {
+  return new Promise((resolve) => setTimeout(() => resolve([22, 24])));
+}
+
+async function fetchData() {
+  let data = null;
+
+  try {
+    const names = await fetchNames();
+    const ages = await fetchAges();
+
+    data = names.map((item, index) => ({ name: item, age: ages[index] }));
+  } catch (err) {
+    console.error(err);
+  } finally {
+    return data || [];
+  }
+}
+
+fetchData()
+  .then((data) => console.log(data)) // [ { name: 'Ivan', age: 22 }, { name: 'Mariya', age: 24 } ]
+  .catch((err) => console.error(err));
+```
+
+---
+
+<!-- .slide: style="font-size: .7em"-->
+
 ## Used materials
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+https://www.freecodecamp.org/news/asynchronous-javascript-explained/
+
+https://dev.to/jps27cse/exploring-asynchronous-javascript-callbacks-promises-and-asyncawait-16k6
 
 https://learn.javascript.ru/call-apply-decorators#prozrachnoe-keshirovanie
 
 https://learn.javascript.ru/promise-api
+
+https://stackoverflow.com/a/22519785
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 
 ---
