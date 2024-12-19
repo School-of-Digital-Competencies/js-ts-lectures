@@ -34,12 +34,12 @@ class RecipeApi extends BaseApi {
     const { limit = 30, sortBy = 'name', order = 'asc' } = params;
 
     try {
-      const { recipes } = await this.request(
+      const response = await this.request(
         'GET',
         `/${this.#endpoint}?limit=${limit}&sortBy=${sortBy}&order=${order}`
       );
 
-      return recipes;
+      return response.recipes;
     } catch (error) {
       console.error('Ошибка: ', error);
     }
@@ -77,4 +77,5 @@ class RecipeApi extends BaseApi {
     order: 'desc',
   });
   console.log(recipes);
+  alert(1111);
 })();

@@ -20,15 +20,35 @@ class Cart {
 }
 
 class Product {
+  #name;
+
   constructor(name, price) {
-    this.name = name;
+    this.#name = name;
     this.price = price;
+  }
+
+  changePrice(value) {
+    this.price = value;
+  }
+
+  set name(value) {
+    this.#name = value;
+  }
+
+  get name() {
+    return this.#name;
   }
 
   toString() {
     return `${this.name} - ${this.price} USD`;
   }
 }
+
+// const pizza = new Product('Pizza', 10);
+// pizza.changePrice(20);
+// pizza;
+// pizza.name = 'New Pizza';
+// pizza;
 
 class Menu {
   products = [
@@ -53,33 +73,35 @@ class Menu {
   }
 }
 
-const menu = new Menu();
-const cart = new Cart();
+(() => {
+  const menu = new Menu();
+  const cart = new Cart();
 
-while (true) {
-  console.log(menu.toString());
+  while (true) {
+    console.log(menu.toString());
 
-  const request = prompt(
-    'Введите номер позиции из меню. Введите -1 чтобы завершить заказ'
-  );
+    const request = prompt(
+      'Введите номер позиции из меню. Введите -1 чтобы завершить заказ'
+    );
 
-  if (!request) {
-    console.log('Корзина заказа сформирована');
-    break;
+    if (!request) {
+      console.log('Корзина заказа сформирована');
+      break;
+    }
+
+    const num = Number(request);
+
+    if (num === -1) {
+      console.log('Корзина заказа сформирована');
+      break;
+    } else {
+      const product = menu.getProduct(num);
+
+      cart.addItem(product);
+
+      alert(`Продукт ${product.name} добавлен в корзину`);
+    }
   }
 
-  const num = Number(request);
-
-  if (num === -1) {
-    console.log('Корзина заказа сформирована');
-    break;
-  } else {
-    const product = menu.getProduct(num);
-
-    cart.addItem(product);
-
-    alert(`Продукт ${product.name} добавлен в корзину`);
-  }
-}
-
-console.log(cart.toString());
+  console.log(cart.toString());
+})();

@@ -7,7 +7,7 @@ async function apiRequest(method, endpoint) {
   });
 
   if (!response.ok) {
-    throw new Error('Ошибка при обработке запроса ' + response.statusText);
+    throw new Error('Error ' + response.statusText);
   }
 
   return await response.json();
@@ -24,7 +24,7 @@ async function getAllRecipes(params) {
 
     return recipes;
   } catch (error) {
-    console.error('Ошибка: ', error);
+    console.error('Error: ', error);
   }
 }
 
@@ -34,7 +34,7 @@ async function getRecipeById(recipeId) {
 
     return recipe;
   } catch (error) {
-    console.error('Ошибка: ', error);
+    console.error('Error: ', error);
   }
 }
 
@@ -44,7 +44,7 @@ async function searchRecipes(query) {
 
     return recipes;
   } catch (error) {
-    console.error('Ошибка: ', error);
+    console.error('Error: ', error);
   }
 }
 

@@ -60,6 +60,7 @@ class Menu {
   }
 }
 
+// IFFE
 (async () => {
   const menu = new Menu();
   const cart = new Cart();

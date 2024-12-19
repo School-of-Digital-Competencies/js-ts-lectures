@@ -64,5 +64,8 @@ class RecipeApi extends BaseApi {
       sortBy: 'prepTimeMinutes',
       order: 'desc',
     })
-    .then((recipes) => console.log(recipes));
+    .then((recipes) => {
+      console.log(recipes);
+      alert(1111);
+    });
 })();
