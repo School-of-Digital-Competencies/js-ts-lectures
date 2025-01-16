@@ -6,11 +6,15 @@
   "scripts": {
     "serve": "reveal-md ./src/slides.md -w",
     "build": "reveal-md ./src/slides.md --static dist",
-    "pdf": "reveal-md ./src/slides.md --print lecture --print-size A4"
+    "pdf": "reveal-md ./src/slides.md --print lecture --print-size A4",
+    "examples:01": "tsc src/examples/01.variables-basics.ts && node src/examples/01.variables-basics.js"
   },
   "author": "Aliaksandr Krasnou<aliaksandr.krasnou@ehu.lt>",
   "license": "ISC",
   "dependencies": {
     "reveal-md": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
   }
 }
