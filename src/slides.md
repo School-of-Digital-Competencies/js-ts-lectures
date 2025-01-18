@@ -497,3 +497,19 @@ const admin = new Admin('Maria');
 
 admin.print();
 ```
+
+---
+
+## Materials
+
+HTML, CSS:
+
+https://doka.guide/html/
+
+https://doka.guide/css/
+
+TypeScript:
+
+https://www.youtube.com/watch?v=SpwzRDUQ1GI
+
+https://www.youtube.com/watch?v=JHEB7RhJG1Y
