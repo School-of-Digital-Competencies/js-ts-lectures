@@ -93,8 +93,6 @@ function compact(arr: number[]) {
 
 ---
 
-<!-- .slide: style="font-size: .7em" -->
-
 ## Types
 
 ```ts
@@ -259,7 +257,7 @@ const ivan3: User = { name: 'Ivan', age: 'adult' }; // error, wrong type of 'age
 ```ts
 // optional param
 function splitString(str: string, separator?: string): string[] {
-  return str ? str.split(separator) : [str]; // if no separator (undefined), return array of 1 element, otherwise split
+  return str ? separator.split(separator) : [str]; // if no separator (undefined), return array of 1 element, otherwise split
 }
 
 splitString('some'); // ['some']
