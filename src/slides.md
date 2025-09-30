@@ -420,7 +420,7 @@ If you re-declare a variable declared with var, it will not lose its value.
 ````js
 > var price = 250;
 > var price;
-< 500
+< 250
 ```
 
 ---
