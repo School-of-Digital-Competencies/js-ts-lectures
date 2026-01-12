@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "reveal-md ./src/slides.md -w",
+    "serve": "reveal-md ./src/slides.md  --css ./src/custom.css -w",
     "build": "reveal-md ./src/slides.md --static dist",
     "pdf": "reveal-md ./src/slides.md --print lecture --print-size A4"
   },
