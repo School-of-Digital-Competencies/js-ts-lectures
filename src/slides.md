@@ -1,349 +1,208 @@
-# HTML Mark Up language
+# Cascading style sheet
 
 ---
 
-## Basic HTML document structure
+## Cascading style sheet
 
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Document</title>
-</head>
-<body>
-  <div>
-    <h1>
-      Hello world
-    </h1>
-    <img src="/img.png" alt="Some pictures"/>
-  </div>
-</body>
-</html>
-```
+There are about of 250 defferent style properties.
 
 ---
 
-## Box model
+## Cascading style sheet
+### Box model
 
-1. Every HTML element is rendered as a rectangular box in the browser.
-2. An HTML element consists of content, padding, border, and margin.
-
-![Box model](./block_model.png)
----
-
-## HTML tags
-
-There are 3 groups:
-
-1. Inline
-2. Block
-3. Inline-block
-
+- width - define exact width of element in any valid css units.
+- height - define exact height of element in any valid css units.
+- min/max-width - define min/max possible width of element in any valid css units depends of content.
+- min/max-height - define min/max possible height of element in any valid css units depends of content.
+- margin - define external indents for the element, can be used different syntax
+- padding - define internal indents for the element, can be used different syntax
+- box-sizing - define which parts of the box model will be included into the element size
 
 ---
 
-## HTML inline tags
+## Cascading style sheet
+### Box model
 
-Properties:
-1. They occupy the width of the content.
-2. An inline tag begins immediately after the previous inline tag and wraps to a new line if it doesn't fit on the current line.
-3. Width and height usually do not apply to inline elements (except replaced elements like <img>).
-4. Only left/right margins work.
-5. Padding can be specified.
-6. Inline elements can contain other inline elements, but cannot contain block elements.
-
----
-<!-- .slide: style="font-size: .8em" -->
-## HTML inline and inline-block tags
-
-Inline:
-- `<a>` — link to a web resource
-- `<br>` — line break
-- `<span>` — inline container
-- `<label>` — label for form controls
-
-
-Inline-block:
-- `<input>` - render different types of interactive element:<br />
- text input, checkbox, radio button, button, text area
-- `<button>` - render button
-- `<select>` - parent tag for rendering drop down selector
-- `<img>` - render picture
-
----
-
-## HTML inline tag &lt;a>
-
-Mandatory attribute href
-
-```html
-<a href="{value}">Link to some page</a>
-```
-
-value:
-- https://some.url.com - redirect to the path
-- mailto:mail@some.com - open mail client
-- tel:+37523222569874 - an attempt to make a phone call 
-- #{some value} - scroll the page to the item with correspond id {some value}
----
-
-
-## HTML inline tag &lt;a>
-
-Optional attribute target
-
-```html
-<a href="https://google.com" target="{value}">Link to some page</a>
-```
-value:
-- _blank - link will be opened in the new browser tab
-- _self - link will be opened in the same browser tab
-- {any value} - link will be opened in the new tab only on the first attempt, rest will be opened in the same tab
----
-
-## HTML inline tag &lt;img>
-
-Mandatory attribute src
-
-```html
-<img src="{value}"/>
-```
-
-- value - link to the image
----
-
-## HTML block tags
-Properties:
-1. They occupy the full available width.
-2. Always starts from the new line.
-3. Dimensions (width/height) can be specified.
-4. All margins work.
-5. Padding can be specified.
-6. Any types of tags can be nested.
-
-
----
-
-## HTML block tags
-
-Basic block tags:
-```html
-<div> – Generic container
-<p> – Paragraph
-<h1> to <h6> – Headings
-<section> – Thematic grouping of content
-<ul> – Unordered list
-<ol> – Ordered list
-<li> – List item (block-level inside lists)
-<figure> – Self-contained media/content
-```
-
----
-
-## CSS - Cascading Style Sheets
-
-There are 3 options to add styles to the tag
-1. Inline styles
-2. Internal styles via &lt;style> tag
-3. Link external file with styles
-
----
-
-## CSS - Cascading Style Sheets
-
-Inline styles
-```html
-<span style="font-size: 30px; color: green;">Hell
-  o</span>
-<span style="font-size: 45px;"> world</span>
-```
-<span style="font-size: 30px; color: green;">Hell
-o</span> <span style="font-size: 45px"> world</span>
-
----
-
-## CSS - Cascading Style Sheets
-
-Internal styles via &lt;style> tag
-
-Inline styles
-```html
-<style>
-  .header {
-    color: green;
+```css
+  .block {
+    width: 30px;
+    heigth: 30px;
   }
-</style>
-<span class="header">Hello world</span>
-```
-<style>
-  .header {
-    color: green;
+  .all-different-indents {
+    margin: 10px 20px 30px 40px;
+    padding: 10px 20px 30px 40px;
   }
-</style>
-<span class="header">Hello world</span>
-
----
-
-## CSS - Cascading Style Sheets
-
-Link external stylesheet {name}.css
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="./{name}.css" />
-  <title>Document</title>
-</head>
-<body>
-  <span class="header">Hello world</span>
-</body>
-</html>
-```
----
-
-## CSS - Cascading Style Sheets
-
-Units:
-- Absolute
-- Relative
-
----
-
-## CSS - Cascading Style Sheets
-Absolute units:
-
-- px (2.54cm/96)
-- mm
-- pt
-- in
-
----
-
-## CSS - Cascading Style Sheets
-
-Relative units:
-- %
-- em
-- rem
-- vw / dvw
-- vh / dvh
-- vmin
-- vmax
-
----
-
-## CSS - Cascading Style Sheets
-
-CSS selectors:
-
-```html
-<div id="some-id" class="class-name">Hello world</div>
-```
-```css
-<style>
-  #some-id { } /* select item by id */
-
-  .class-name {} /* select item by class name */
-
-  [class="class-name"] /* select item by attribute */
-
-  div {} /* select item by tag name */
-
-  * {} /* any item will be selected */
-</style>
+  .equal-verticals-and-horisontals-indents {
+    margin: 20px 40px;
+    padding: 20px 40px;
+  }
+  .all-indents-are-equal {
+    margin: 40px;
+    padding: 40px;
+  }
 ```
 
 ---
 
-## CSS - Cascading Style Sheets
+## Cascading style sheet
+### Box model
 
-CSS syntax
+<div class="two-columns">
+<div>
+<pre><code class="language-html">
+  <div class="block" >Hello world</div>
+  <div class="block box-sizing" >Hello world</div>
+</code></pre>
 
-```css
-.class-name {
-  {property name}: {property value};
-  {property name}: {property value};
-}
+<pre><code class="language-css">
+  .block {
+    height: 40px;
+    border: 20px solid #fff;
+  }
 
-#id {
-  {property name}: {property value};
-}
-
-```
----
-## CSS – display property
-
-The `display` property defines how an element is rendered and how it participates in layout.
-
-Common values:
-
-```css
-display: block;
-display: inline;
-display: inline-block;
-display: none;
-display: flex;
-display: grid;
-```
----
-## CSS – Specificity
-
-CSS specificity defines which styles are applied when multiple rules target the same element.
-
-Rules with higher specificity override rules with lower specificity.
-
----
-
-## CSS – Specificity order (from lowest to highest)
-
-1. Universal selector (`*`)
-2. Tag selector (`div`, `p`)
-3. Class / attribute / pseudo-class (`.class`, `[type="text"]`)
-4. ID selector (`#id`)
-5. Inline styles (`style=""`)
-
----
-
-## CSS – Specificity example
-
-HTML:
-```html
-<div id="title" class="header">Hello world</div>
-```
-```css
-
-#title {
-  color: red;
-}
-#title {
-      color: green;
-}
-div {
-  color: black;
-}
-.header {
-  color: blue;
-}
-
-```
-<div class="example">
-<div id="title" class="header">Hello world</div>
-</example>
-<style>
-  .example {
-    div {
-      color: black;
-    }
-
-    .header {
-      color: blue;
-    }
-
-    #title {
-      color: red;
-    }
-    #title {
+  .box-sizing {
+    box-sizing: border-box;
+  }
+</code></pre>
+</div>
+<div>
+  <style>
+    .block {
+      height: 50px;
+      border: 20px solid #fff !important;
       color: green;
     }
-}
-</style>
+
+    .box-sizing {
+      box-sizing: border-box;
+    }
+  </style>
+  <div class="block" >Hello world</div>
+  <div class="block box-sizing" >Hello world</div>
+</div>
+</div>
+
+---
+## Cascading style sheet
+### Border
+<ul style="max-height: 50vh; overflow-y: scroll; padding-left: 40px; ">
+<li>border</li>
+<li>border-width</li>
+<li>border-style</li>
+<li>border-color</li>
+<li>border-top</li>
+<li>border-right</li>
+<li>border-bottom</li>
+<li>border-left</li>
+<li>border-top-width</li>
+<li>border-right-width</li>
+<li>border-bottom-width</li>
+<li>border-left-width</li>
+<li>border-top-style</li>
+<li>border-right-style</li>
+<li>border-bottom-style</li>
+<li>border-left-style</li>
+<li>border-top-color</li>
+<li>border-right-color</li>
+<li>border-bottom-color</li>
+<li>border-left-color</li>
+<li>border-radius</li>
+<li>border-top-left-radius</li>
+<li>border-top-right-radius</li>
+<li>border-bottom-left-radius</li>
+<li>border-bottom-right-radius</li>
+</ul>
+
+---
+## Cascading style sheet
+### Border
+
+```css
+  .block {
+    border: 10px solid red;
+    border-radius: 10px 20px 30px 40px;
+  }
+
+```
+---
+## Cascading style sheet
+### Display & Visibility
+
+```css
+  .block {
+    display: none;
+    display: block; // by default for the block elements
+    display: inline-block; // by default for the inline-block elements
+    display: inline; // by default for the inline elements
+    display: flex;
+    display: grid;
+  }
+
+```
+---
+## Cascading style sheet
+### Display & Visibility
+The CSS visibility property controls whether an element is visible or hidden while still taking up space in the layout
+```css
+  .block {
+    visibility: hidden;
+    visibility: visible; // by default
+  }
+
+```
+---
+## Cascading style sheet
+### Overflow
+The CSS overflow property controls what happens when content is too large to fit inside an element’s box, such as whether it is clipped, hidden, or scrollable. 
+```css
+  .block {
+    overflow: hidden;
+    overflow: scroll;
+    overflow: visible;
+    overflow: auto;
+  }
+
+```
+---
+## Cascading style sheet
+### Position
+
+```css
+  .block {
+    position: static; /* by default */
+    position: relative; /* positions an element relative to its 
+      own original (default) position.*/
+    position: absolute; /* positions an element relative to 
+      the closest parent with property position different from static . */
+    position: fixed; /* positions an element relative to the viewport. */
+    position: sticky; /* positions an element relative to its normal position
+      until a scroll threshold is reached, after which
+      it sticks to a specified position within its container. */
+  }
+
+```
+---
+## Cascading style sheet
+### Position
+
+```css
+  .block {
+    top: 20px; /* any valid css unit */
+    left: 20px; /* any valid css unit */
+    right: 20px; /* any valid css unit */
+    bottom: 20px; /* any valid css unit */
+    inset: tru10px 20px 30px 40px; /* top right bottom left */
+  }
+
+```
+---
+## Cascading style sheet
+### Z-index
+Controls the stacking order of positioned elements, determining which elements appear in front of or behind others along the z-axis.
+```css
+  .block {
+    z-index: 2; /* any number */
+  }
+
+```
