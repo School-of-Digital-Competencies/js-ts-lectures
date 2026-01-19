@@ -153,10 +153,12 @@ There are 3 options to add styles to the tag
 
 Inline styles
 ```html
-<span style="font-size: 30px">Hello</span>
-<span style="font-size: 45px"> world</span>
+<span style="font-size: 30px; color: green;">Hell
+  o</span>
+<span style="font-size: 45px;"> world</span>
 ```
-<span style="font-size: 30px">Hello</span> <span style="font-size: 45px"> world</span>
+<span style="font-size: 30px; color: green;">Hell
+o</span> <span style="font-size: 45px"> world</span>
 
 ---
 
@@ -309,17 +311,20 @@ HTML:
 <div id="title" class="header">Hello world</div>
 ```
 ```css
-div {
-  color: black;
-}
-
-.header {
-  color: blue;
-}
 
 #title {
   color: red;
 }
+#title {
+      color: green;
+}
+div {
+  color: black;
+}
+.header {
+  color: blue;
+}
+
 ```
 <div class="example">
 <div id="title" class="header">Hello world</div>
@@ -336,6 +341,9 @@ div {
 
     #title {
       color: red;
+    }
+    #title {
+      color: green;
     }
 }
 </style>
